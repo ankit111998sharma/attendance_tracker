@@ -1,0 +1,340 @@
+/* --- Variables --- */
+:root {
+    --primary-color: #6a0572; /* Deep Plum */
+    --secondary-color: #a020f0; /* Electric Violet */
+    --accent-color: #00bcd4; /* Cyan Blue */
+    --background-gradient-start: #1e002a; /* Very Dark Purple */
+    --background-gradient-end: #0a0014; /* Even Darker Purple */
+    --card-background: #28003a; /* Darker Purple for cards */
+    --text-light: #f0f0f0;
+    --text-medium: #c0c0c0;
+    --text-dark: #333333;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --input-background: rgba(255, 255, 255, 0.08);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --border-radius: 12px;
+    --transition-speed: 0.3s ease;
+}
+
+/* --- Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrollbar from background animation */
+    position: relative;
+}
+
+/* Background Animation */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, var(--secondary-color) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, var(--accent-color) 0%, transparent 40%);
+    background-size: 800px 800px, 900px 900px;
+    background-repeat: no-repeat;
+    animation: moveBackground 20s infinite alternate ease-in-out;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 0%, 100% 100%; }
+    50% { background-position: 100% 50%, 0% 50%; }
+    100% { background-position: 0% 0%, 100% 100%; }
+}
+
+/* --- App Container --- */
+.app-container {
+    width: 100%;
+    max-width: 500px; /* Constrain main content width */
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(40, 0, 58, 0.9); /* Slightly more opaque card background */
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 40px var(--shadow-dark);
+    text-align: center;
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    border: 1px solid var(--border-color);
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* --- Header --- */
+.app-header {
+    margin-bottom: 30px;
+}
+
+.app-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-title .icon {
+    font-size: 0.9em;
+    margin-right: 12px;
+    color: var(--accent-color);
+    animation: bounceIn 0.8s ease-out;
+}
+
+.app-subtitle {
+    font-size: 1.1em;
+    color: var(--text-medium);
+    font-weight: 300;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* --- Card Styles (for form and table) --- */
+.card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px var(--shadow-light);
+    border: 1px solid var(--border-color);
+}
+
+/* --- Form Styles --- */
+.attendance-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.attendance-form input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-background);
+    color: var(--text-light);
+    font-size: 1.05em;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    outline: none;
+}
+
+.attendance-form input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.attendance-form input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(106, 5, 114, 0.3);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-speed);
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-icon {
+    margin-right: 10px;
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--background-gradient-start);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Link Section --- */
+.link-section {
+    margin-top: 25px;
+}
+
+/* --- Table Styles (Dashboard) --- */
+.table-responsive {
+    overflow-x: auto; /* Makes table scrollable on small screens */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 400px; /* Ensure table is readable on small screens */
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95em;
+}
+
+.attendance-table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky; /* Keep header visible on scroll */
+    top: 0;
+    z-index: 1;
+}
+
+.attendance-table tbody tr {
+    transition: background-color var(--transition-speed);
+}
+
+.attendance-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle stripe effect */
+}
+
+.attendance-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Lighter hover effect */
+}
+
+.attendance-table td {
+    color: var(--text-medium);
+}
+
+.no-records {
+    padding: 30px;
+    font-size: 1.1em;
+    color: var(--text-medium);
+    font-style: italic;
+}
+
+/* --- Media Queries (Responsiveness) --- */
+@media (max-width: 600px) {
+    .app-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .app-title {
+        font-size: 2em;
+    }
+
+    .app-title .icon {
+        margin-right: 8px;
+        font-size: 0.8em;
+    }
+
+    .app-subtitle {
+        font-size: 0.95em;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons on small screens */
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+
+    .btn-icon {
+        margin-right: 8px;
+    }
+
+    .attendance-table th,
+    .attendance-table td {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 400px) {
+    .app-title {
+        flex-direction: column; /* Stack icon and text */
+        font-size: 1.8em;
+    }
+
+    .app-title .icon {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}

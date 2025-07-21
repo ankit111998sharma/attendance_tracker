@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script> </head>
+<body>
+    <div class="background-animation"></div> <div class="app-container main-page">
+        <header class="app-header">
+            <h1 class="app-title">
+                <i class="fas fa-clipboard-check icon"></i> Student's Attendance Tracker
+            </h1>
+            <p class="app-subtitle">Effortlessly mark your daily presence.</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card form-card">
+                <form method="POST" action="/submit" class="attendance-form">
+                    <div class="input-group">
+                        <label for="name" class="visually-hidden">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="name" />
+                    </div>
+                    <button type="submit" class="btn primary-btn">
+                        <i class="fas fa-user-check btn-icon"></i> Mark Attendance
+                    </button>
+                </form>
+            </div>
+            <div class="link-section">
+                <a class="dashboard-link btn secondary-btn" href="/dashboard">
+                    View Dashboard <i class="fas fa-chart-line btn-icon"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

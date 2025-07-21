@@ -1,0 +1,4 @@
+localhost: http://127.0.0.1:5000
+pip : pip install flask
+run the server : python app.py
+path to run server : (venv) PS D:\Ryan Edunation School\python project\attendance_tracker> python app.py
